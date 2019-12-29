@@ -2,8 +2,8 @@
 
 async function deserializeScore(req) {
     try {
-        const score = req.body;
-        return score;
+        const nameScoreTime = req.body;
+        return nameScoreTime;
     } catch (err) {
         console.error(err);
     }

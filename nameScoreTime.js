@@ -4,7 +4,7 @@ const DEFAULT_ENCODING = 'utf8';
 const prompt = require('prompt-sync')();
 const connDB = require('./mySQLserver.js');
 
-class Score {
+class NameScoreTime {
     makeTwoDigits(n) {
         if (n < 10) {
             n = n.toString();
@@ -30,7 +30,7 @@ class Score {
     }
 
     async create(pName, pScore) {
-        const score = {
+        const nameScoreTime = {
             playersName: pName,
             playersScore: pScore,
             dateTime: this.getDateTime(),
@@ -41,9 +41,11 @@ class Score {
             return new Promise((resolve, reject) => {
                 connDB.query(
                     'INSERT INTO all_scores_input(player_name, score, date_time) VALUES(?, ?, ?)',
-                    [pName, pScore, score.dateTime],
+                    [pName, pScore, nameScoreTime.dateTime],
                     function(error, results, fields) {
-                        console.log(`${pName}'s score ${pScore} at ${score.dateTime} recorded!`);
+                        console.log(
+                            `${pName}'s score ${pScore} at ${nameScoreTime.dateTime} recorded!`,
+                        );
                         resolve(results);
                         /*{
     "saved": {
@@ -107,4 +109,4 @@ class Score {
     }
 }
 
-module.exports = Score;
+module.exports = NameScoreTime;

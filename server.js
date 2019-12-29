@@ -5,15 +5,15 @@ const app = new Express();
 
 const {saveScore, showTopTenScores, checkRank} = require('./actions');
 
-const Score = require('./score');
-const score = new Score();
+const NameScoreTime = require('./nameScoreTime');
+const nameScoreTime = new NameScoreTime();
 
 const PORT = 3000;
 const SCORES = 'scores';
 
-app.post(`/${SCORES}`, saveScore.bind(null, score));
-app.get(`/top${SCORES}`, showTopTenScores.bind(null, score));
-app.get(`/${SCORES}`, checkRank.bind(null, score));
+app.post(`/${SCORES}`, saveScore.bind(null, nameScoreTime));
+app.get(`/top${SCORES}`, showTopTenScores.bind(null, nameScoreTime));
+app.get(`/${SCORES}`, checkRank.bind(null, nameScoreTime));
 
 app.listen(PORT, err => {
     if (err) throw err;

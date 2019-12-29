@@ -2,7 +2,7 @@
 
 async function checkRank(score, req, res) {
     try {
-        const rank = await score.checkRank();
+        const rank = await nameScoreTime.checkRank();
         res.json({rank});
     } catch (err) {
         console.error(err);
