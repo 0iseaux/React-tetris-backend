@@ -9,13 +9,11 @@
 const NameScoreTime = require('../nameScoreTime');
 const nameScoreTime = new NameScoreTime();
 
-async function saveScore(nameScoreTimeToSave, req, res) {
+async function saveScore(toSave, req, res) {
     try {
-        const nameScoreTimeToSave = req.body;
-        const saved = await nameScoreTime.create(
-            nameScoreTimeToSave['nameScoreTime']['playersName'],
-            nameScoreTimeToSave['nameScoreTime']['playersScore'],
-        );
+        const toSave = req.body;
+        console.log(toSave);
+        const saved = await nameScoreTime.create(toSave['playersName'], toSave['playersScore']);
         res.json({saved});
     } catch (err) {
         console.error(err);
