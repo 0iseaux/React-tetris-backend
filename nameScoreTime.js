@@ -1,7 +1,6 @@
 'use strict';
 
 const DEFAULT_ENCODING = 'utf8';
-const prompt = require('prompt-sync')();
 const connDB = require('./mySQLserver.js');
 
 class NameScoreTime {
@@ -30,35 +29,21 @@ class NameScoreTime {
     }
 
     async create(pName, pScore) {
-        const nameScoreTime = {
-            playersName: pName,
-            playersScore: pScore,
-            dateTime: this.getDateTime(),
-        };
-
-        // scores.push(score); // ????????????
+        console.log(pName);
+        console.log(pScore);
+        let dateTimeNow = this.getDateTime(); // CHANGE BACK TO FRONTEND
+        console.log(dateTimeNow);
         try {
             return new Promise((resolve, reject) => {
                 connDB.query(
                     'INSERT INTO all_scores_input(player_name, score, date_time) VALUES(?, ?, ?)',
-                    [pName, pScore, nameScoreTime.dateTime],
+                    [pName, pScore, dateTimeNow],
                     function(error, results, fields) {
-                        console.log(
-                            `${pName}'s score ${pScore} at ${nameScoreTime.dateTime} recorded!`,
-                        );
+                        if (error) {
+                            console.error(error);
+                        }
+                        console.log(`${pName}'s score ${pScore} at ${dateTimeNow} recorded!`);
                         resolve(results);
-                        /*{
-    "saved": {
-        "fieldCount": 0,
-        "affectedRows": 1,
-        "insertId": 0,
-        "serverStatus": 2,
-        "warningCount": 0,
-        "message": "",
-        "protocol41": true,
-        "changedRows": 0
-    }
-}*/
                     },
                 );
             });

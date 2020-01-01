@@ -1,13 +1,21 @@
 'use strict';
 
-const deserializeScore = require('./deserializeScore');
+// const Express = require('express');
+// const bodyParser = require('body-parser');
+// const app = Express();
+
+// const jsonParser = bodyParser.json();
+
 const NameScoreTime = require('../nameScoreTime');
 const nameScoreTime = new NameScoreTime();
 
-async function saveScore(score, req, res) {
+async function saveScore(nameScoreTimeToSave, req, res) {
     try {
-        const saved = await nameScoreTime.create('Player', 100, 'date_time'); // ???????????????
-        deserializeScore(req, res);
+        const nameScoreTimeToSave = req.body;
+        const saved = await nameScoreTime.create(
+            nameScoreTimeToSave['nameScoreTime']['playersName'],
+            nameScoreTimeToSave['nameScoreTime']['playersScore'],
+        );
         res.json({saved});
     } catch (err) {
         console.error(err);
