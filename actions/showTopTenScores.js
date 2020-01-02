@@ -1,6 +1,9 @@
 'use strict';
 
-async function showTopTenScores(score, req, res) {
+const NameScoreTime = require('../NameScoreTime');
+const nameScoreTime = new NameScoreTime();
+
+async function showTopTenScores(topTen, req, res) {
     try {
         const topScores = await nameScoreTime.read();
         res.json({topScores});

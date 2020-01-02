@@ -12,7 +12,7 @@ app.use(Express.json());
 
 const {saveScore, showTopTenScores, checkRank} = require('./actions');
 
-const NameScoreTime = require('./nameScoreTime');
+const NameScoreTime = require('./NameScoreTime');
 const nameScoreTime = new NameScoreTime();
 
 const PORT = 8080;

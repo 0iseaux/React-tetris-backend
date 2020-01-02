@@ -6,7 +6,7 @@
 
 // const jsonParser = bodyParser.json();
 
-const NameScoreTime = require('../nameScoreTime');
+const NameScoreTime = require('../NameScoreTime');
 const nameScoreTime = new NameScoreTime();
 
 async function saveScore(toSave, req, res) {
