@@ -66,10 +66,6 @@ class NameScoreTime {
                 connDB.query(
                     'SELECT player_name, score, date_time FROM all_scores_input ORDER BY score DESC LIMIT 10',
                     function(error, results, fields) {
-                        console.log('selectTopTen', results);
-                        for (const item of results) {
-                            console.log(item['player_name']);
-                        }
                         resolve(results);
                     },
                 );
