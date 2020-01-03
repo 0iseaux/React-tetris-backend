@@ -20,6 +20,7 @@ class NameScoreTime {
         let hr = today.getHours();
         let min = today.getMinutes();
         let sec = today.getSeconds();
+        hr = this.makeTwoDigits(mth);
         hr = this.makeTwoDigits(hr);
         min = this.makeTwoDigits(min);
         sec = this.makeTwoDigits(sec);
