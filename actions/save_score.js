@@ -1,12 +1,6 @@
 'use strict';
 
-// const Express = require('express');
-// const bodyParser = require('body-parser');
-// const app = Express();
-
-// const jsonParser = bodyParser.json();
-
-const NameScoreTime = require('../NameScoreTime');
+const NameScoreTime = require('../name_score_time');
 const nameScoreTime = new NameScoreTime();
 
 async function saveScore(toSave, req, res) {

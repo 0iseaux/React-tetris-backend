@@ -1,5 +1,5 @@
 const DEFAULT_ENCODING = 'utf8';
-const connDB = require('./mySQLserver.js');
+const connDB = require('./mysql_server.js');
 
 let score = 50;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const NameScoreTime = require('../NameScoreTime');
+const NameScoreTime = require('../name_score_time');
 const nameScoreTime = new NameScoreTime();
 
 async function showTopTenScores(topTen, req, res) {

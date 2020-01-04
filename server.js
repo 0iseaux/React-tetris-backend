@@ -1,26 +1,23 @@
 'use strict';
-const connDB = require('./mySQLserver.js');
 
 const Express = require('express');
-// const bodyParser = require('body-parser');
 
 const app = new Express();
 
 app.use(Express.json());
 
-// const jsonParser = bodyParser.json();
-
 const {saveScore, showTopTenScores, checkRank} = require('./actions');
 
-const NameScoreTime = require('./NameScoreTime');
+const NameScoreTime = require('./name_score_time');
 const nameScoreTime = new NameScoreTime();
 
-const PORT = 8080;
+const DOMAIN = 'tetris.fyr.fyi';
 const SCORES = 'scores';
-const OriginPORT = 3000;
+
+// const OriginPORT = 3000;
 
 app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', `http://localhost:${OriginPORT}`);
+    res.header('Access-Control-Allow-Origin', `https://${DOMAIN}`);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
@@ -31,5 +28,4 @@ app.get(`/rank${SCORES}`, checkRank.bind(null, nameScoreTime));
 
 app.listen(PORT, err => {
     if (err) throw err;
-    console.log(`Server started on http://localhost:${PORT}`);
 });
