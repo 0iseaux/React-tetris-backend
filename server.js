@@ -4,6 +4,8 @@ const Express = require('express');
 
 const app = new Express();
 
+const PORT = 8080;
+
 app.use(Express.json());
 
 const {saveScore, showTopTenScores, checkRank} = require('./actions');
