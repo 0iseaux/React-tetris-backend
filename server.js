@@ -4,7 +4,7 @@ const Express = require('express');
 
 const app = new Express();
 
-const PORT = 8080;
+const PORT = 80;
 
 app.use(Express.json());
 
