@@ -1,7 +1,7 @@
-'use strict';
-
 const DEFAULT_ENCODING = 'utf8';
 const connDB = require('./mySQLserver.js');
+
+let score = 50;
 
 class NameScoreTime {
     makeTwoDigits(n) {
@@ -34,6 +34,7 @@ class NameScoreTime {
         console.log(pScore);
         let dateTimeNow = this.getDateTime(); // CHANGE BACK TO FRONTEND
         console.log(dateTimeNow);
+        score = pScore;
         try {
             return new Promise((resolve, reject) => {
                 connDB.query(
@@ -52,16 +53,8 @@ class NameScoreTime {
             console.error(err);
         }
     }
-    /*
-        return new Promise(resolve => {
-            fs.readFile(this._filename, DEFAULT_ENCODING, (error, data) => {
-                if (error) return resolve([]);
-
-                return resolve(JSON.parse(data));
-            });
-        });
-        */
     async read() {
+        console.log(score);
         try {
             return new Promise((resolve, reject) => {
                 connDB.query(
@@ -81,7 +74,7 @@ class NameScoreTime {
             return new Promise((resolve, reject) => {
                 connDB.query(
                     // SELECT x.player_name,x.score, x.rank FROM (SELECT player_name, score, @rownum := @rownum + 1 AS rank FROM all_scores_input JOIN (SELECT @rownum := 0) r ORDER BY t.score) x WHERE x.player_name = 'Player' AND x.score = '100'
-                    `SELECT COUNT(*) from all_scores_input WHERE score > "100"`, // test pScore value only!
+                    `SELECT COUNT(*) from all_scores_input WHERE score > ${score}`,
                     function(error, results, fields) {
                         console.log('checkRank', results); // undefined
                         resolve(results);

@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 
 app.post(`/${SCORES}`, saveScore.bind(null, nameScoreTime));
 app.get(`/top${SCORES}`, showTopTenScores.bind(null, nameScoreTime));
-app.get(`/${SCORES}`, checkRank.bind(null, nameScoreTime));
+app.get(`/rank${SCORES}`, checkRank.bind(null, nameScoreTime));
 
 app.listen(PORT, err => {
     if (err) throw err;
